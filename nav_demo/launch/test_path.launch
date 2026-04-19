@@ -1,21 +1,20 @@
 <launch>
-    <!-- 是否启动 RViz -->
-    <arg name="start_rviz" default="true" />
+    <!-- 设置地图的配置文件 -->
+    <arg name="map" default="nav.yaml" />
     
-    <!-- 仿真时间配置 -->
-    <param name="use_sim_time" value="true" />
-
-    <!-- 启动地图服务器 -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_demo)/map/nav.yaml" />
-
-    <!-- 启动 AMCL 定位 -->
+    <!-- 运行地图服务器，并且加载设置的地图 -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_demo)/map/$(arg map)" />
+    
+    <!-- 启动 AMCL 节点 -->
     <include file="$(find nav_demo)/launch/nav04_amcl.launch" />
 
-    <!-- 启动 move_base 路径规划 -->
+    <!-- 运行 move_base 节点 -->
     <include file="$(find nav_demo)/launch/nav05_path.launch" />
-
-    <!-- RViz 和相关状态发布 -->
+    
+    <!-- 为了防止 Gazebo 模型状态缺失导致的 TF 完整性问题，在本地保留 joint_state_publisher -->
     <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nav_demo)/config/nav.rviz" if="$(arg start_rviz)" />
+
+    <!-- 运行 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nav_demo)/config/nav.rviz" />
 </launch>
