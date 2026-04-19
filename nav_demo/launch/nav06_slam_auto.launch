@@ -1,0 +1,14 @@
+<launch>
+    <!-- 启动SLAM节点 (包含了gmapping) -->
+    <include file="$(find nav_demo)/launch/nav01_slam.launch" />
+
+    <!-- 运行move_base节点 -->
+    <include file="$(find nav_demo)/launch/nav05_path.launch" />
+
+    <!-- 运行rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nav_demo)/config/nav.rviz" />
+
+    <!-- 运行针对差速机器人的 joint_state_publisher 与 robot_state_publisher，防止 TF 报错 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+</launch>

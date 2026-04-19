@@ -19,6 +19,7 @@ This repository integrates URDF modeling, Gazebo physics simulation, and the ROS
 *   **Sensor Fusion**: Simulated 2D LiDAR (`/scan`) and Odometry (`/odom`).
 *   **Adaptive Monte Carlo Localization (AMCL)**: Integrated probabilistic localization in a pre-built static map.
 *   **Autonomous Path Planning**: Global planner and Local planner (DWA) configured with custom Costmaps (inflation zones, obstacle tracking).
+*   **Autonomous SLAM (Auto-mapping)**: Simultaneous mapping and navigation to explore unknown areas automatically.
 
 ## 🚀 Getting Started
 
@@ -37,20 +38,29 @@ catkin_make
 source devel/setup.bash
 ```
 
-### 3. Running Path Planning (One-Click)
+### 3. Usage & Demos
 
+#### Option A: Known-Map Path Planning (Navigate an existing map)
 **Step 1:** Launch the Gazebo simulation environment
 ```bash
 roslaunch urdf02_gazebo env.launch
 ```
-
 **Step 2:** Launch Navigation (Map + AMCL + Move Base + RViz)
 ```bash
 roslaunch nav_demo test_path.launch
 ```
+**Step 3:** Use the **`2D Nav Goal`** tool in RViz to set a target destination.
 
-**Step 3:** Set a Goal
-In the RViz interface, use the **`2D Nav Goal`** tool at the top toolbar and click a target destination on the map. The autonomous car will plan a path, avoid obstacles, and navigate towards the goal!
+#### Option B: Autonomous SLAM (Explore & map unknown areas automatically)
+**Step 1:** Launch the Gazebo simulation environment
+```bash
+roslaunch urdf02_gazebo env.launch
+```
+**Step 2:** Launch the Auto-SLAM pipeline (Gmapping + Move Base + RViz)
+```bash
+roslaunch nav_demo nav06_slam_auto.launch
+```
+**Step 3:** Set a goal on the unmapped grey areas. The robot will map the environment while driving towards the goal!
 
 ---
 *If this project helps you in your research, robotics journey, or coursework, feel free to give it a ⭐!*
