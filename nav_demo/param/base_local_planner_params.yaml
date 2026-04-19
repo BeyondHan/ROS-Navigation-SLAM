@@ -1,0 +1,33 @@
+TrajectoryPlannerROS:
+  # 机器人运动参数
+  max_vel_x: 0.5
+  min_vel_x: 0.05
+  max_vel_theta: 1.0
+  min_in_place_vel_theta: 0.4
+  acc_lim_theta: 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 0.0
+
+  # 目标位置公差
+  yaw_goal_tolerance: 0.1
+  xy_goal_tolerance: 0.15
+  latch_xy_goal_tolerance: false
+
+  # 前向模拟参数
+  sim_time: 1.5
+  vx_samples: 20
+  vtheta_samples: 40
+  
+  # 轨迹评分参数
+  meter_scoring: true
+  pdist_scale: 0.6
+  gdist_scale: 0.8
+  occdist_scale: 0.01
+  heading_lookahead: 0.325
+  dwa: true
+  
+  # 振荡重置参数
+  oscillation_reset_dist: 0.05
+  
+  # 全局路径
+  prune_plan: true

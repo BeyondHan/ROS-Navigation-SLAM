@@ -1,0 +1,21 @@
+# 机器人几何参数
+# 若是圆形机器人
+robot_radius: 0.12
+# 若是方形或长方形机器人
+# footprint: [[-0.1, -0.1], [-0.1, 0.1], [0.1, 0.1], [0.1, -0.1]]
+
+# 碰撞膨胀半径
+inflation_radius: 0.2
+cost_scaling_factor: 3.0
+
+# 地图更新与发布频率
+map_type: costmap
+transform_tolerance: 0.5
+obstacle_range: 3.0
+raytrace_range: 3.5
+
+# 障碍物层参数
+obstacle_layer:
+  enabled: true
+  observation_sources: laser_scan_sensor
+  laser_scan_sensor: {sensor_frame: laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true}

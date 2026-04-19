@@ -1,0 +1,23 @@
+<!-- 需求，设置不同形状的机器人部件 -->
+
+<robot name="mycar">
+    <link name="base_link">
+    <visual>
+        <geometry>
+            <!-- <box size="0.3 0.2 1.0"/> -->
+             <!-- <cylinder radius="0.1" length="1.0"/> -->
+            <!-- <sphere radius="0.1"/> -->
+       
+            <mesh filename="package://urdf01_rviz/meshes/autolabor_mini.stl"/>
+        
+        </geometry>
+<!-- 小白打卡 -->
+        <origin  xyz="0 0.0 0.0" rpy="1.57 0.0 0.0"/>
+        <material name="red">
+            <color rgba="1.0 0.0 0.0 0.5"/> <!-- rbga means red green blue alpha -->
+        </material>
+
+    </visual>
+    </link>
+
+</robot>

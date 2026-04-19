@@ -1,0 +1,15 @@
+<launch>
+    <!-- Gazebo 已发布 joint_states 时可保持 false，避免重复发布 -->
+    <arg name="use_joint_state_publisher" default="false" />
+    <arg name="start_rviz" default="true" />
+
+    <!-- 让 robot_state_publisher 使用与 Gazebo 一致的机器人描述 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find urdf02_gazebo)/urdf/xacro/my_base_camera_laser.urdf.xacro" />
+
+    <!-- 关节以及机器人状态发布节点 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" if="$(arg use_joint_state_publisher)" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- 启动 rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" if="$(arg start_rviz)" />
+</launch>
