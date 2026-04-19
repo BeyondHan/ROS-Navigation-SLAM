@@ -58,7 +58,7 @@ roslaunch urdf02_gazebo env.launch
 ```
 **Step 2:** Launch the Auto-SLAM pipeline (Gmapping + Move Base + RViz)
 ```bash
-roslaunch nav_demo nav06_slam_auto.launch
+roslaunch nav_demo nav07_slam_auto.launch
 ```
 **Step 3:** Set a goal on the unmapped grey areas. The robot will map the environment while driving towards the goal!
 
